@@ -44,14 +44,15 @@ narodziny:<span id="cent"/> <span id="birthDate">?<span>
 		
 		birthDate.innerHTML = rok + '/' + miesiac + '/' + dzien;
 	}
+
 	if ( p[2].value*10 + p[3].value - miesiac.value == 0){
-	cent.innerHTML = "19";
+	    cent.innerHTML = "19";
 	}
 	if ( p[2].value*10 + p[3].value - miesiac.value == 80){
-	cent.innerHTML = "18";
+	    cent.innerHTML = "18";
 	}
 	if ( p[2].value*10 + p[3].value - miesiac.value == 20){
-	cent.innerHTML = "20";
+	    cent.innerHTML = "20";
 	}
 
 	function displayAge(p) {
