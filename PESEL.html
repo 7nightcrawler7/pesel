@@ -17,12 +17,24 @@ narodziny:<span id="cent"></span><span id="birthDate">?</span>
 
 <script>
 	pesel.addEventListener("keyup", function () {
-		displaySex(pesel.value);
-		displayBirthDate(pesel.value);
-		displayAge(pesel.value);
-		displayCentury(pesel.value);
+		if (isPeselValid(pesel.value)){
+			displaySex(pesel.value);
+			displayBirthDate(pesel.value);
+			displayAge(pesel.value);
+			displayCentury(pesel.value);
+		}	
 	});
-
+	function isPeselValid(p){
+		function length(p) {
+			return p.length == 11
+		}
+		function isInt(p){
+			return isNaN(parseInt(p))== false
+		}
+		
+		return isInt(p) && length(p)
+	}
+		
 	function displaySex(p) {
 		if (p[9] % 2 == 0) {
 			sex.innerHTML = "Kobieta";
