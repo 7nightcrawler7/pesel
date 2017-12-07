@@ -7,23 +7,20 @@
   <link rel="shortcut icon" href="firedept.ico" />
 </head>
 <body>
-
-<button id="check">!#!#!</button>
 <input id="pesel" maxlength="11"/>
 <br/>
 płeć: <span id="sex">?</span>
 <br/>
 wiek:<span id="age">?</span>
 <br/>
-narodziny:<span id="cent"/> <span id="birthDate">?<span>
+narodziny:<span id="cent"></span><span id="birthDate">?</span>
 
 <script>
-	var buttonChuck = document.getElementById("check");
-
-	buttonChuck.addEventListener("click", function () {
+	pesel.addEventListener("keyup", function () {
 		displaySex(pesel.value);
 		displayBirthDate(pesel.value);
 		displayAge(pesel.value);
+		displayCentury(pesel.value);
 	});
 
 	function displaySex(p) {
@@ -42,19 +39,23 @@ narodziny:<span id="cent"/> <span id="birthDate">?<span>
 		
 		var rok = p[0] + p[1];
 		
-		birthDate.innerHTML = rok + '/' + miesiac + '/' + dzien;
+		window.birthDate.innerHTML = rok + '/' + miesiac + '/' + dzien;
 	}
 
-	if ( p[2].value*10 + p[3].value - miesiac.value == 0){
-	    cent.innerHTML = "19";
+	function displayCentury (p){
+		var miesiac= (p[2] + p[3])%20;
+	
+		if ( p[2] + p[3] - miesiac == 0){
+			cent.innerHTML = "19";
+		}
+		if ( p[2] + p[3] - miesiac == 80){
+			cent.innerHTML = "18";
+		}
+		if ( p[2] + p[3] - miesiac == 20){
+			cent.innerHTML = "20";
+		}
 	}
-	if ( p[2].value*10 + p[3].value - miesiac.value == 80){
-	    cent.innerHTML = "18";
-	}
-	if ( p[2].value*10 + p[3].value - miesiac.value == 20){
-	    cent.innerHTML = "20";
-	}
-
+	
 	function displayAge(p) {
 	
 	}
