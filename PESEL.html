@@ -31,33 +31,43 @@ narodziny:<span id="cent"></span><span id="birthDate">?</span>
 		    sex.innerHTML = "Mężczyna";
 		}
 	}
-	
+
 	function displayBirthDate(p) {
+		window.birthDate.innerHTML = getBirthDate(p);
+	}
+
+	function getBirthDate(p) {
 		var dzien = p[4] + p[5];
 		
 		var miesiac = (p[2] + p[3])%20;
 		
 		var rok = p[0] + p[1];
 		
-		window.birthDate.innerHTML = rok + '/' + miesiac + '/' + dzien;
+		return rok + '/' + miesiac + '/' + dzien;
 	}
-
+	
 	function displayCentury (p){
+		cent.innerHTML = getCentury(p);
+	}
+	function getCentury (p){
 		var miesiac= (p[2] + p[3])%20;
 	
 		if ( p[2] + p[3] - miesiac == 0){
-			cent.innerHTML = "19";
+			return"19";
 		}
 		if ( p[2] + p[3] - miesiac == 80){
-			cent.innerHTML = "18";
+			return "18";
 		}
 		if ( p[2] + p[3] - miesiac == 20){
-			cent.innerHTML = "20";
+			return "20";
 		}
+	}
+	function getFullDate(p){
+		return getCentury(p) + getBirthDate(p)
 	}
 	
 	function displayAge(p) {
-		age.innerHTML = getDateDelta();
+		age.innerHTML = getDateDelta(getFullDate(p));
 	}
 
 	function getDateDelta(data) {
