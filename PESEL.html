@@ -57,7 +57,14 @@ narodziny:<span id="cent"></span><span id="birthDate">?</span>
 	}
 	
 	function displayAge(p) {
+		age.innerHTML = getDateDelta();
+	}
+
+	function getDateDelta(data) {
+		var timestamps = new Date().getTime() - new Date(data).getTime();
+		var difference = timestamps/1000/60/60/24/365.25;
 	
+		return Math.floor(difference)
 	}
 </script>
 </body>
