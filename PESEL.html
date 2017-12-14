@@ -1,10 +1,10 @@
 <html>
 <head>
-<title>
-	IQ po peselu!!!
-  </title>
-  <meta charset="utf-8" />
-  <link rel="shortcut icon" href="firedept.ico" />
+    <title>
+        IQ po peselu!!!
+    </title>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" href="firedept.ico"/>
 </head>
 <body>
 <input id="pesel" maxlength="11"/>
@@ -16,78 +16,79 @@ wiek:<span id="age">?</span>
 narodziny:<span id="cent"></span><span id="birthDate">?</span>
 
 <script>
-	pesel.addEventListener("keyup", function () {
-		if (isPeselValid(pesel.value)){
-			displaySex(pesel.value);
-			displayBirthDate(pesel.value);
-			displayAge(pesel.value);
-			displayCentury(pesel.value);
-		}	
-	});
-	function isPeselValid(p){
-		function length(p) {
-			return p.length == 11
-		}
-		function isInt(p){
-			return isNaN(parseInt(p))== false
-		}
-		
-		return isInt(p) && length(p)
-	}
-		
-	function displaySex(p) {
-		if (p[9] % 2 == 0) {
-			sex.innerHTML = "Kobieta";
-		}
-		else{
-		    sex.innerHTML = "Mężczyna";
-		}
-	}
+    pesel.addEventListener("keyup", function () {
+        if (isPeselValid(pesel.value)) {
+            displaySex(pesel.value);
+            displayBirthDate(pesel.value);
+            displayAge(pesel.value);
+            displayCentury(pesel.value);
+        }
+    });
+    function isPeselValid(p) {
+        function length(p) {
+            return p.length == 11
+        }
 
-	function displayBirthDate(p) {
-		window.birthDate.innerHTML = getBirthDate(p);
-	}
+        function isInt(p) {
+            return isNaN(parseInt(p)) == false
+        }
 
-	function getBirthDate(p) {
-		var dzien = p[4] + p[5];
-		
-		var miesiac = (p[2] + p[3])%20;
-		
-		var rok = p[0] + p[1];
-		
-		return rok + '/' + miesiac + '/' + dzien;
-	}
-	
-	function displayCentury (p){
-		cent.innerHTML = getCentury(p);
-	}
-	function getCentury (p){
-		var miesiac= (p[2] + p[3])%20;
-	
-		if ( p[2] + p[3] - miesiac == 0){
-			return"19";
-		}
-		if ( p[2] + p[3] - miesiac == 80){
-			return "18";
-		}
-		if ( p[2] + p[3] - miesiac == 20){
-			return "20";
-		}
-	}
-	function getFullDate(p){
-		return getCentury(p) + getBirthDate(p)
-	}
-	
-	function displayAge(p) {
-		age.innerHTML = getDateDelta(getFullDate(p));
-	}
+        return isInt(p) && length(p)
+    }
 
-	function getDateDelta(data) {
-		var timestamps = new Date().getTime() - new Date(data).getTime();
-		var difference = timestamps/1000/60/60/24/365.25;
-	
-		return Math.floor(difference)
-	}
+    function displaySex(p) {
+        if (p[9] % 2 == 0) {
+            sex.innerHTML = "Kobieta";
+        }
+        else {
+            sex.innerHTML = "Mężczyna";
+        }
+    }
+
+    function displayBirthDate(p) {
+        window.birthDate.innerHTML = getBirthDate(p);
+    }
+
+    function getBirthDate(p) {
+        var dzien = p[4] + p[5];
+
+        var miesiac = (p[2] + p[3]) % 20;
+
+        var rok = p[0] + p[1];
+
+        return rok + '/' + miesiac + '/' + dzien;
+    }
+
+    function displayCentury(p) {
+        cent.innerHTML = getCentury(p);
+    }
+    function getCentury(p) {
+        var miesiac = (p[2] + p[3]) % 20;
+
+        if (p[2] + p[3] - miesiac == 0) {
+            return "19";
+        }
+        if (p[2] + p[3] - miesiac == 80) {
+            return "18";
+        }
+        if (p[2] + p[3] - miesiac == 20) {
+            return "20";
+        }
+    }
+    function getFullDate(p) {
+        return getCentury(p) + getBirthDate(p)
+    }
+
+    function displayAge(p) {
+        age.innerHTML = getDateDelta(getFullDate(p));
+    }
+
+    function getDateDelta(data) {
+        var timestamps = new Date().getTime() - new Date(data).getTime();
+        var difference = timestamps / 1000 / 60 / 60 / 24 / 365.25;
+
+        return Math.floor(difference)
+    }
 </script>
 </body>
 </html>
