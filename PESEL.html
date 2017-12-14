@@ -24,7 +24,17 @@ narodziny:<span id="cent"></span><span id="birthDate">?</span>
             displayAge(pesel.value);
             displayCentury(pesel.value);
         }
+        else {
+            diplayQuestionMarks()
+        }
     });
+
+    function diplayQuestionMarks() {
+        sex.innerHTML = "?";
+        age.innerHTML = "?";
+        birthDate.innerHTML = "?";
+        cent.innerHTML = "";
+    }
 
     function isPeselValid(p) {
         function length(p) {
