@@ -7,7 +7,8 @@
     <link rel="shortcut icon" href="firedept.ico"/>
 </head>
 <body>
-<input id="pesel" maxlength="11"/>
+
+<input id="pesel" maxlength="11" title="Podaj pesel"/>
 <br/>
 płeć: <span id="sex">?</span>
 <br/>
@@ -24,20 +25,44 @@ narodziny:<span id="cent"></span><span id="birthDate">?</span>
             displayCentury(pesel.value);
         }
     });
+
     function isPeselValid(p) {
         function length(p) {
-            return p.length == 11
+            return p.length === 11
         }
 
         function isInt(p) {
-            return isNaN(parseInt(p)) == false
+            return isNaN(parseInt(p)) === false
         }
 
-        return isInt(p) && length(p)
+        function maxDays(p) {
+            var rok = p[0] + p[1];
+            var fullrok = getCentury(p) + rok;
+            var miesiac = (p[2] + p[3]) % 20;
+            var dzien = p[4] + p[5];
+            var Monthdays = new Date(fullrok, miesiac, 0).getDate();
+            return dzien <= Monthdays;
+        }
+
+        function maxMonth(p) {
+            var miesiac = (p[2] + p[3]) % 20;
+            return miesiac <= 12
+        }
+
+        function ZerosHeros(p) {
+            var dzien = p[4] + p[5];
+            var miesiac = (p[2] + p[3]) % 20;
+            if (dzien == 0 || miesiac == 0) {
+                return false
+            }
+            return true
+        }
+
+        return isInt(p) && length(p) && maxDays(p) && maxMonth(p) && ZerosHeros(p)
     }
 
     function displaySex(p) {
-        if (p[9] % 2 == 0) {
+        if (p[9] % 2 === 0) {
             sex.innerHTML = "Kobieta";
         }
         else {
@@ -65,13 +90,13 @@ narodziny:<span id="cent"></span><span id="birthDate">?</span>
     function getCentury(p) {
         var miesiac = (p[2] + p[3]) % 20;
 
-        if (p[2] + p[3] - miesiac == 0) {
+        if (p[2] + p[3] - miesiac === 0) {
             return "19";
         }
-        if (p[2] + p[3] - miesiac == 80) {
+        if (p[2] + p[3] - miesiac === 80) {
             return "18";
         }
-        if (p[2] + p[3] - miesiac == 20) {
+        if (p[2] + p[3] - miesiac === 20) {
             return "20";
         }
     }
